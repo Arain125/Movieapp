@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 
 const MovieDetailPage = () => {
   const [movieDetails, setMovieDetails] = useState(null);
-  const { movieName } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(
-          `https://www.episodate.com/api/show-details?q=${movieName}`
+          `https://www.episodate.com/api/show-details?q=${id}`
         );
         console.log(response.data);
         setMovieDetails(response.data.tvShow);
@@ -20,7 +20,7 @@ const MovieDetailPage = () => {
     };
 
     fetchMovieDetails();
-  }, [movieName]);
+  }, [id]);
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 py-12">
